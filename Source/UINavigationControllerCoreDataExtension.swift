@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 extension UINavigationController: ManagedObjectContextSettable {
-    var managedObjectContext: NSManagedObjectContext! {
+    public var managedObjectContext: NSManagedObjectContext! {
         get {
             return nil
         }
