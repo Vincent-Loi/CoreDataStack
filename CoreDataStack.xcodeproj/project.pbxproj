@@ -10,6 +10,33 @@
 		94959E041CA6F72C003E9EF6 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 94959E031CA6F72C003E9EF6 /* CoreDataStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94959E0B1CA6F72C003E9EF6 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94959E001CA6F72C003E9EF6 /* CoreDataStack.framework */; };
 		94959E101CA6F72C003E9EF6 /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E0F1CA6F72C003E9EF6 /* CoreDataStackTests.swift */; };
+		94959E331CA6F83C003E9EF6 /* Collection+CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E1B1CA6F83C003E9EF6 /* Collection+CoreDataExtensions.swift */; };
+		94959E341CA6F83C003E9EF6 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E1C1CA6F83C003E9EF6 /* CollectionViewDataSource.swift */; };
+		94959E351CA6F83C003E9EF6 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E1D1CA6F83C003E9EF6 /* ConfigurableCell.swift */; };
+		94959E361CA6F83C003E9EF6 /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E1E1CA6F83C003E9EF6 /* CoreDataErrors.swift */; };
+		94959E371CA6F83C003E9EF6 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 94959E1F1CA6F83C003E9EF6 /* CoreDataStack.h */; };
+		94959E381CA6F83C003E9EF6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E201CA6F83C003E9EF6 /* DataProvider.swift */; };
+		94959E391CA6F83C003E9EF6 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E211CA6F83C003E9EF6 /* DataSource.swift */; };
+		94959E3A1CA6F83C003E9EF6 /* FetchedResultsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E221CA6F83C003E9EF6 /* FetchedResultsDataProvider.swift */; };
+		94959E3C1CA6F83C003E9EF6 /* KeyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E241CA6F83C003E9EF6 /* KeyCodable.swift */; };
+		94959E3D1CA6F83C003E9EF6 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E251CA6F83C003E9EF6 /* ManagedObject.swift */; };
+		94959E3E1CA6F83C003E9EF6 /* ManagedObjectObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E261CA6F83C003E9EF6 /* ManagedObjectObserver.swift */; };
+		94959E3F1CA6F83C003E9EF6 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E271CA6F83C003E9EF6 /* Migration.swift */; };
+		94959E401CA6F83C003E9EF6 /* ModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E281CA6F83C003E9EF6 /* ModelBuilder.swift */; };
+		94959E411CA6F83C003E9EF6 /* ModelVersionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E291CA6F83C003E9EF6 /* ModelVersionType.swift */; };
+		94959E421CA6F83C003E9EF6 /* NSFetchedResultsController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E2A1CA6F83C003E9EF6 /* NSFetchedResultsController+Extensions.swift */; };
+		94959E431CA6F83C003E9EF6 /* NSFetchRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E2B1CA6F83C003E9EF6 /* NSFetchRequest+Extensions.swift */; };
+		94959E441CA6F83C003E9EF6 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E2C1CA6F83C003E9EF6 /* NSManagedObject+Extensions.swift */; };
+		94959E451CA6F83C003E9EF6 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E2D1CA6F83C003E9EF6 /* NSManagedObjectContext+Extensions.swift */; };
+		94959E461CA6F83C003E9EF6 /* NSManagedObjectContext+Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E2E1CA6F83C003E9EF6 /* NSManagedObjectContext+Observers.swift */; };
+		94959E471CA6F83C003E9EF6 /* NSPersistentStoreCoordinator+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E2F1CA6F83C003E9EF6 /* NSPersistentStoreCoordinator+Extensions.swift */; };
+		94959E481CA6F83C003E9EF6 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E301CA6F83C003E9EF6 /* TableViewDataSource.swift */; };
+		94959E491CA6F83C003E9EF6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E311CA6F83C003E9EF6 /* Utilities.swift */; };
+		94959E4A1CA6F83C003E9EF6 /* ValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E321CA6F83C003E9EF6 /* ValueTransformer.swift */; };
+		94959E501CA6F865003E9EF6 /* ManagedObjectContextSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E4C1CA6F865003E9EF6 /* ManagedObjectContextSettable.swift */; };
+		94959E511CA6F865003E9EF6 /* UITabBarViewControllerCoreDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E4D1CA6F865003E9EF6 /* UITabBarViewControllerCoreDataExtension.swift */; };
+		94959E521CA6F865003E9EF6 /* UINavigationControllerCoreDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E4E1CA6F865003E9EF6 /* UINavigationControllerCoreDataExtension.swift */; };
+		94959E531CA6F865003E9EF6 /* ManagedObjectDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E4F1CA6F865003E9EF6 /* ManagedObjectDisplaying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +56,33 @@
 		94959E0A1CA6F72C003E9EF6 /* CoreDataStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94959E0F1CA6F72C003E9EF6 /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 		94959E111CA6F72C003E9EF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94959E1B1CA6F83C003E9EF6 /* Collection+CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+CoreDataExtensions.swift"; sourceTree = "<group>"; };
+		94959E1C1CA6F83C003E9EF6 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		94959E1D1CA6F83C003E9EF6 /* ConfigurableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
+		94959E1E1CA6F83C003E9EF6 /* CoreDataErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
+		94959E1F1CA6F83C003E9EF6 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		94959E201CA6F83C003E9EF6 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		94959E211CA6F83C003E9EF6 /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		94959E221CA6F83C003E9EF6 /* FetchedResultsDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsDataProvider.swift; sourceTree = "<group>"; };
+		94959E241CA6F83C003E9EF6 /* KeyCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyCodable.swift; sourceTree = "<group>"; };
+		94959E251CA6F83C003E9EF6 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
+		94959E261CA6F83C003E9EF6 /* ManagedObjectObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectObserver.swift; sourceTree = "<group>"; };
+		94959E271CA6F83C003E9EF6 /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		94959E281CA6F83C003E9EF6 /* ModelBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBuilder.swift; sourceTree = "<group>"; };
+		94959E291CA6F83C003E9EF6 /* ModelVersionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelVersionType.swift; sourceTree = "<group>"; };
+		94959E2A1CA6F83C003E9EF6 /* NSFetchedResultsController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Extensions.swift"; sourceTree = "<group>"; };
+		94959E2B1CA6F83C003E9EF6 /* NSFetchRequest+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchRequest+Extensions.swift"; sourceTree = "<group>"; };
+		94959E2C1CA6F83C003E9EF6 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
+		94959E2D1CA6F83C003E9EF6 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
+		94959E2E1CA6F83C003E9EF6 /* NSManagedObjectContext+Observers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Observers.swift"; sourceTree = "<group>"; };
+		94959E2F1CA6F83C003E9EF6 /* NSPersistentStoreCoordinator+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPersistentStoreCoordinator+Extensions.swift"; sourceTree = "<group>"; };
+		94959E301CA6F83C003E9EF6 /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		94959E311CA6F83C003E9EF6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		94959E321CA6F83C003E9EF6 /* ValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueTransformer.swift; sourceTree = "<group>"; };
+		94959E4C1CA6F865003E9EF6 /* ManagedObjectContextSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextSettable.swift; sourceTree = "<group>"; };
+		94959E4D1CA6F865003E9EF6 /* UITabBarViewControllerCoreDataExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarViewControllerCoreDataExtension.swift; sourceTree = "<group>"; };
+		94959E4E1CA6F865003E9EF6 /* UINavigationControllerCoreDataExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationControllerCoreDataExtension.swift; sourceTree = "<group>"; };
+		94959E4F1CA6F865003E9EF6 /* ManagedObjectDisplaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectDisplaying.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +107,7 @@
 		94959DF61CA6F72C003E9EF6 = {
 			isa = PBXGroup;
 			children = (
+				94959E1A1CA6F7B2003E9EF6 /* Source */,
 				94959E021CA6F72C003E9EF6 /* CoreDataStack */,
 				94959E0E1CA6F72C003E9EF6 /* CoreDataStackTests */,
 				94959E011CA6F72C003E9EF6 /* Products */,
@@ -86,6 +141,56 @@
 			path = CoreDataStackTests;
 			sourceTree = "<group>";
 		};
+		94959E1A1CA6F7B2003E9EF6 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				94959E541CA6F9D5003E9EF6 /* dataSources */,
+				94959E4B1CA6F85C003E9EF6 /* controller */,
+				94959E1B1CA6F83C003E9EF6 /* Collection+CoreDataExtensions.swift */,
+				94959E1D1CA6F83C003E9EF6 /* ConfigurableCell.swift */,
+				94959E1E1CA6F83C003E9EF6 /* CoreDataErrors.swift */,
+				94959E1F1CA6F83C003E9EF6 /* CoreDataStack.h */,
+				94959E221CA6F83C003E9EF6 /* FetchedResultsDataProvider.swift */,
+				94959E241CA6F83C003E9EF6 /* KeyCodable.swift */,
+				94959E251CA6F83C003E9EF6 /* ManagedObject.swift */,
+				94959E261CA6F83C003E9EF6 /* ManagedObjectObserver.swift */,
+				94959E271CA6F83C003E9EF6 /* Migration.swift */,
+				94959E281CA6F83C003E9EF6 /* ModelBuilder.swift */,
+				94959E291CA6F83C003E9EF6 /* ModelVersionType.swift */,
+				94959E2A1CA6F83C003E9EF6 /* NSFetchedResultsController+Extensions.swift */,
+				94959E2B1CA6F83C003E9EF6 /* NSFetchRequest+Extensions.swift */,
+				94959E2C1CA6F83C003E9EF6 /* NSManagedObject+Extensions.swift */,
+				94959E2D1CA6F83C003E9EF6 /* NSManagedObjectContext+Extensions.swift */,
+				94959E2E1CA6F83C003E9EF6 /* NSManagedObjectContext+Observers.swift */,
+				94959E2F1CA6F83C003E9EF6 /* NSPersistentStoreCoordinator+Extensions.swift */,
+				94959E311CA6F83C003E9EF6 /* Utilities.swift */,
+				94959E321CA6F83C003E9EF6 /* ValueTransformer.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		94959E4B1CA6F85C003E9EF6 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				94959E4C1CA6F865003E9EF6 /* ManagedObjectContextSettable.swift */,
+				94959E4D1CA6F865003E9EF6 /* UITabBarViewControllerCoreDataExtension.swift */,
+				94959E4E1CA6F865003E9EF6 /* UINavigationControllerCoreDataExtension.swift */,
+				94959E4F1CA6F865003E9EF6 /* ManagedObjectDisplaying.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		94959E541CA6F9D5003E9EF6 /* dataSources */ = {
+			isa = PBXGroup;
+			children = (
+				94959E1C1CA6F83C003E9EF6 /* CollectionViewDataSource.swift */,
+				94959E201CA6F83C003E9EF6 /* DataProvider.swift */,
+				94959E211CA6F83C003E9EF6 /* DataSource.swift */,
+				94959E301CA6F83C003E9EF6 /* TableViewDataSource.swift */,
+			);
+			name = dataSources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,6 +198,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94959E371CA6F83C003E9EF6 /* CoreDataStack.h in Headers */,
 				94959E041CA6F72C003E9EF6 /* CoreDataStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +300,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94959E391CA6F83C003E9EF6 /* DataSource.swift in Sources */,
+				94959E521CA6F865003E9EF6 /* UINavigationControllerCoreDataExtension.swift in Sources */,
+				94959E4A1CA6F83C003E9EF6 /* ValueTransformer.swift in Sources */,
+				94959E351CA6F83C003E9EF6 /* ConfigurableCell.swift in Sources */,
+				94959E3A1CA6F83C003E9EF6 /* FetchedResultsDataProvider.swift in Sources */,
+				94959E331CA6F83C003E9EF6 /* Collection+CoreDataExtensions.swift in Sources */,
+				94959E471CA6F83C003E9EF6 /* NSPersistentStoreCoordinator+Extensions.swift in Sources */,
+				94959E3E1CA6F83C003E9EF6 /* ManagedObjectObserver.swift in Sources */,
+				94959E481CA6F83C003E9EF6 /* TableViewDataSource.swift in Sources */,
+				94959E381CA6F83C003E9EF6 /* DataProvider.swift in Sources */,
+				94959E511CA6F865003E9EF6 /* UITabBarViewControllerCoreDataExtension.swift in Sources */,
+				94959E441CA6F83C003E9EF6 /* NSManagedObject+Extensions.swift in Sources */,
+				94959E491CA6F83C003E9EF6 /* Utilities.swift in Sources */,
+				94959E341CA6F83C003E9EF6 /* CollectionViewDataSource.swift in Sources */,
+				94959E531CA6F865003E9EF6 /* ManagedObjectDisplaying.swift in Sources */,
+				94959E3C1CA6F83C003E9EF6 /* KeyCodable.swift in Sources */,
+				94959E501CA6F865003E9EF6 /* ManagedObjectContextSettable.swift in Sources */,
+				94959E361CA6F83C003E9EF6 /* CoreDataErrors.swift in Sources */,
+				94959E421CA6F83C003E9EF6 /* NSFetchedResultsController+Extensions.swift in Sources */,
+				94959E411CA6F83C003E9EF6 /* ModelVersionType.swift in Sources */,
+				94959E401CA6F83C003E9EF6 /* ModelBuilder.swift in Sources */,
+				94959E461CA6F83C003E9EF6 /* NSManagedObjectContext+Observers.swift in Sources */,
+				94959E3F1CA6F83C003E9EF6 /* Migration.swift in Sources */,
+				94959E451CA6F83C003E9EF6 /* NSManagedObjectContext+Extensions.swift in Sources */,
+				94959E3D1CA6F83C003E9EF6 /* ManagedObject.swift in Sources */,
+				94959E431CA6F83C003E9EF6 /* NSFetchRequest+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +442,7 @@
 		94959E151CA6F72C003E9EF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +453,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.freiraum.CoreDataStack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		94959E161CA6F72C003E9EF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
