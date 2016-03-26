@@ -13,7 +13,7 @@ public class CoreDataStack: NSObject {
     let modelName: String
     let bundle: NSBundle
     
-    init(modelName: String, bundle: NSBundle) {
+    public init(modelName: String, bundle: NSBundle) {
         self.bundle = bundle
         self.modelName = modelName
     }
