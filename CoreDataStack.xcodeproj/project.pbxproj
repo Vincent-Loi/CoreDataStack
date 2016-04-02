@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9413425C1CABE45D00C7CC2E /* CDTrain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941342591CABE45D00C7CC2E /* CDTrain+CoreDataProperties.swift */; };
+		9413425D1CABE45D00C7CC2E /* CDTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9413425A1CABE45D00C7CC2E /* CDTrain.swift */; };
+		9413425E1CABE45D00C7CC2E /* NSManagedObject+FindAndInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9413425B1CABE45D00C7CC2E /* NSManagedObject+FindAndInit.swift */; };
+		941342611CABFF4900C7CC2E /* DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 941342571CABE44C00C7CC2E /* DataModel.xcdatamodel */; };
+		948170211CAD1D470039DE03 /* TrainItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 948170201CAD1D470039DE03 /* TrainItemCell.xib */; };
 		94959E041CA6F72C003E9EF6 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 94959E031CA6F72C003E9EF6 /* CoreDataStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94959E0B1CA6F72C003E9EF6 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94959E001CA6F72C003E9EF6 /* CoreDataStack.framework */; };
 		94959E101CA6F72C003E9EF6 /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94959E0F1CA6F72C003E9EF6 /* CoreDataStackTests.swift */; };
@@ -51,6 +56,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		941342571CABE44C00C7CC2E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		941342591CABE45D00C7CC2E /* CDTrain+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDTrain+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9413425A1CABE45D00C7CC2E /* CDTrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDTrain.swift; sourceTree = "<group>"; };
+		9413425B1CABE45D00C7CC2E /* NSManagedObject+FindAndInit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+FindAndInit.swift"; sourceTree = "<group>"; };
+		948170201CAD1D470039DE03 /* TrainItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrainItemCell.xib; sourceTree = "<group>"; };
 		94959E001CA6F72C003E9EF6 /* CoreDataStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94959E031CA6F72C003E9EF6 /* CoreDataStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		94959E051CA6F72C003E9EF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +147,11 @@
 		94959E0E1CA6F72C003E9EF6 /* CoreDataStackTests */ = {
 			isa = PBXGroup;
 			children = (
+				941342571CABE44C00C7CC2E /* DataModel.xcdatamodel */,
+				948170201CAD1D470039DE03 /* TrainItemCell.xib */,
+				941342591CABE45D00C7CC2E /* CDTrain+CoreDataProperties.swift */,
+				9413425A1CABE45D00C7CC2E /* CDTrain.swift */,
+				9413425B1CABE45D00C7CC2E /* NSManagedObject+FindAndInit.swift */,
 				94959E0F1CA6F72C003E9EF6 /* CoreDataStackTests.swift */,
 				94959E111CA6F72C003E9EF6 /* Info.plist */,
 			);
@@ -293,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				948170211CAD1D470039DE03 /* TrainItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +353,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9413425D1CABE45D00C7CC2E /* CDTrain.swift in Sources */,
+				9413425C1CABE45D00C7CC2E /* CDTrain+CoreDataProperties.swift in Sources */,
+				9413425E1CABE45D00C7CC2E /* NSManagedObject+FindAndInit.swift in Sources */,
 				94959E101CA6F72C003E9EF6 /* CoreDataStackTests.swift in Sources */,
+				941342611CABFF4900C7CC2E /* DataModel.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +539,7 @@
 				94959E161CA6F72C003E9EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94959E171CA6F72C003E9EF6 /* Build configuration list for PBXNativeTarget "CoreDataStackTests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +548,7 @@
 				94959E191CA6F72C003E9EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -27,13 +27,17 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
 
     public func processUpdates(updates: [DataProviderUpdate<Data.Object>]?) {
         guard let updates = updates else { return collectionView.reloadData() }
+        var shouldUpdate = false
         collectionView.performBatchUpdates({
             for update in updates {
                 switch update {
                 case .Insert(let indexPath):
                     self.collectionView.insertItemsAtIndexPaths([indexPath])
                 case .Update(let indexPath, let object):
-                    guard let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? Cell else { fatalError("wrong cell type") }
+                    guard let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? Cell else {
+                        shouldUpdate = true
+                        continue
+                    }
                     cell.configureForObject(object)
                 case .Move(let indexPath, let newIndexPath):
                     self.collectionView.deleteItemsAtIndexPaths([indexPath])
@@ -46,7 +50,10 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
                     self.collectionView.deleteSections(NSIndexSet(index: sectionIndex))
                 }
             }
-        }, completion: nil)
+            }, completion: nil)
+        if shouldUpdate {
+            self.collectionView.reloadData()
+        }
     }
 
 
