@@ -103,5 +103,7 @@ public class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObjec
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
         delegate.dataProviderDidUpdate(updates)
     }
+    
+    
 
 }

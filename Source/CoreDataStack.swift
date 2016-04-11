@@ -12,10 +12,12 @@ import CoreData
 public class CoreDataStack: NSObject {
     let modelName: String
     let bundle: NSBundle
+    let options: Dictionary<NSObject, AnyObject>?
     
-    public init(modelName: String, bundle: NSBundle) {
+    public init(modelName: String, bundle: NSBundle, options: Dictionary<NSObject, AnyObject>? = nil) {
         self.bundle = bundle
         self.modelName = modelName
+        self.options = options
     }
     
     public func createMainContext() -> NSManagedObjectContext {
@@ -29,7 +31,7 @@ public class CoreDataStack: NSObject {
         let coordinator = NSPersistentStoreCoordinator(
             managedObjectModel: model())
         try! coordinator.addPersistentStoreWithType(NSSQLiteStoreType,
-            configuration: nil, URL: storeURL(), options: nil)
+            configuration: nil, URL: storeURL(), options: options)
         return coordinator
     }
     
