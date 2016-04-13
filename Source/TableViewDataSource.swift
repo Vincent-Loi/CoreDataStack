@@ -11,7 +11,11 @@ import UIKit
 
 public class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell: UITableViewCell where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object>: NSObject, UITableViewDataSource {
     
-    public var additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
+    public var additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     public required init(tableView: UITableView, dataProvider: Data, delegate: Delegate) {
         self.tableView = tableView
