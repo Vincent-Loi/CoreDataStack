@@ -11,16 +11,13 @@ import UIKit
 
 public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate, Data: DataProvider, Cell: UICollectionViewCell where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object>: NSObject, UICollectionViewDataSource {
     
-    public var additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?{
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    
 
-    public required init(collectionView: UICollectionView, dataProvider: Data, delegate: Delegate) {
+    public required init(collectionView: UICollectionView, dataProvider: Data, delegate: Delegate, additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())? = nil) {
         self.collectionView = collectionView
         self.dataProvider = dataProvider
         self.delegate = delegate
+        self.additionalConfigureCellWithObject = additionalConfigureCellWithObject
         super.init()
         collectionView.dataSource = self
         collectionView.reloadData()
@@ -68,6 +65,7 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
     private let collectionView: UICollectionView
     private let dataProvider: Data
     private weak var delegate: Delegate!
+    private let additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
 
 
     // MARK: UICollectionViewDataSource

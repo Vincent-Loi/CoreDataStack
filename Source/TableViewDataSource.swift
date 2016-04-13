@@ -11,16 +11,11 @@ import UIKit
 
 public class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell: UITableViewCell where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object>: NSObject, UITableViewDataSource {
     
-    public var additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    public required init(tableView: UITableView, dataProvider: Data, delegate: Delegate) {
+    public required init(tableView: UITableView, dataProvider: Data, delegate: Delegate, additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())? = nil) {
         self.tableView = tableView
         self.dataProvider = dataProvider
         self.delegate = delegate
+        self.additionalConfigureCellWithObject = additionalConfigureCellWithObject
         super.init()
         tableView.dataSource = self
         tableView.reloadData()
@@ -62,6 +57,7 @@ public class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvide
     private let tableView: UITableView
     private let dataProvider: Data
     private weak var delegate: Delegate!
+    private let additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
 
 
     // MARK: UITableViewDataSource
