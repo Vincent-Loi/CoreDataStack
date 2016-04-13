@@ -84,8 +84,9 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
         guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? Cell else {
             fatalError("Unexpected cell type at \(indexPath)")
         }
-        cell.configureForObject(object)
         additionalConfigureCellWithObject?(object, cell)
+        cell.configureForObject(object)
+        
         return cell
     }
     

@@ -75,8 +75,9 @@ public class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvide
         let identifier = delegate.cellIdentifierForObject(object)
         guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? Cell
             else { fatalError("Unexpected cell type at \(indexPath)") }
-        cell.configureForObject(object)
         additionalConfigureCellWithObject?(object, cell)
+        cell.configureForObject(object)
+        
         return cell
     }
 
