@@ -7,6 +7,12 @@
 //
 
 
+public protocol DataSourceCellConfiguratorDelegate {
+    associatedtype Object
+    associatedtype Cell
+    func configureCellWithObject(object: Object, cell: Cell) -> Cell
+}
+
 public protocol DataSourceDelegate: class {
     associatedtype Object
     func cellIdentifierForObject(object: Object) -> String

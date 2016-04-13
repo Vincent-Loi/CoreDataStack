@@ -202,9 +202,9 @@
 			isa = PBXGroup;
 			children = (
 				94959E1C1CA6F83C003E9EF6 /* CollectionViewDataSource.swift */,
+				94959E301CA6F83C003E9EF6 /* TableViewDataSource.swift */,
 				94959E201CA6F83C003E9EF6 /* DataProvider.swift */,
 				94959E211CA6F83C003E9EF6 /* DataSource.swift */,
-				94959E301CA6F83C003E9EF6 /* TableViewDataSource.swift */,
 			);
 			name = dataSources;
 			sourceTree = "<group>";

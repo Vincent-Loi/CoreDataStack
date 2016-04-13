@@ -10,6 +10,8 @@ import UIKit
 
 
 public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate, Data: DataProvider, Cell: UICollectionViewCell where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object>: NSObject, UICollectionViewDataSource {
+    
+    public var additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
 
     public required init(collectionView: UICollectionView, dataProvider: Data, delegate: Delegate) {
         self.collectionView = collectionView
@@ -81,6 +83,7 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
             fatalError("Unexpected cell type at \(indexPath)")
         }
         cell.configureForObject(object)
+        additionalConfigureCellWithObject?(object, cell)
         return cell
     }
     

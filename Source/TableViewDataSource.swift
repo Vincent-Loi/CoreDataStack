@@ -10,7 +10,9 @@ import UIKit
 
 
 public class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvider, Cell: UITableViewCell where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object>: NSObject, UITableViewDataSource {
-
+    
+    public var additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
+    
     public required init(tableView: UITableView, dataProvider: Data, delegate: Delegate) {
         self.tableView = tableView
         self.dataProvider = dataProvider
@@ -74,6 +76,7 @@ public class TableViewDataSource<Delegate: DataSourceDelegate, Data: DataProvide
         guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as? Cell
             else { fatalError("Unexpected cell type at \(indexPath)") }
         cell.configureForObject(object)
+        additionalConfigureCellWithObject?(object, cell)
         return cell
     }
 
