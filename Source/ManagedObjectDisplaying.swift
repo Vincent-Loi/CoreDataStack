@@ -15,14 +15,14 @@ public protocol ManagedObjectDisplaying {
     var displayingObject: Displayable! { get set }
     var observer: GenericObserver<Displayable>! { get }
     
-    func didChangeObject(changeType: ManagedObjectObserver.ChangeType, object: Displayable)
+    func didChangeObject(_ changeType: ManagedObjectObserver.ChangeType, object: Displayable)
 }
 
 public final class GenericObserver<Obsavable: NSManagedObject> {
     let observer: ManagedObjectObserver?
-    public init?(object: Obsavable, changeHandler: (ManagedObjectObserver.ChangeType, object: Obsavable) -> ()) {
+    public init?(object: Obsavable, changeHandler: @escaping (ManagedObjectObserver.ChangeType, _ object: Obsavable) -> ()) {
         let observer = ManagedObjectObserver(object: object, changeHandler: {changeType in
-            changeHandler(changeType, object: object)
+            changeHandler(changeType, object)
         })
         self.observer = observer
     }

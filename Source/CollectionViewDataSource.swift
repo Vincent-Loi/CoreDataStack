@@ -9,7 +9,7 @@
 import UIKit
 
 
-public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate, Data: DataProvider, Cell: UICollectionViewCell where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object>: NSObject, UICollectionViewDataSource {
+open class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate, Data: DataProvider, Cell: UICollectionViewCell>: NSObject, UICollectionViewDataSource where Delegate.Object == Data.Object, Cell: ConfigurableCell, Cell.DataSource == Data.Object {
     
     
 
@@ -23,34 +23,34 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
         collectionView.reloadData()
     }
 
-    public var selectedObject: Data.Object? {
-        guard let indexPath = collectionView.indexPathsForSelectedItems()?.first else { return nil }
+    open var selectedObject: Data.Object? {
+        guard let indexPath = collectionView.indexPathsForSelectedItems?.first else { return nil }
         return dataProvider.objectAtIndexPath(indexPath)
     }
 
-    public func processUpdates(updates: [DataProviderUpdate<Data.Object>]?) {
+    open func processUpdates(_ updates: [DataProviderUpdate<Data.Object>]?) {
         guard let updates = updates else { return collectionView.reloadData() }
         var shouldUpdate = false
         collectionView.performBatchUpdates({
             for update in updates {
                 switch update {
-                case .Insert(let indexPath):
-                    self.collectionView.insertItemsAtIndexPaths([indexPath])
-                case .Update(let indexPath, let object):
-                    guard let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? Cell else {
+                case .insert(let indexPath):
+                    self.collectionView.insertItems(at: [indexPath])
+                case .update(let indexPath, let object):
+                    guard let cell = self.collectionView.cellForItem(at: indexPath) as? Cell else {
                         shouldUpdate = true
                         continue
                     }
                     cell.configureForObject(object)
-                case .Move(let indexPath, let newIndexPath):
-                    self.collectionView.deleteItemsAtIndexPaths([indexPath])
-                    self.collectionView.insertItemsAtIndexPaths([newIndexPath])
-                case .Delete(let indexPath):
-                    self.collectionView.deleteItemsAtIndexPaths([indexPath])
-                case .InsertSection(let sectionIndex):
-                    self.collectionView.insertSections(NSIndexSet(index: sectionIndex))
-                case .DeleteSection(let sectionIndex):
-                    self.collectionView.deleteSections(NSIndexSet(index: sectionIndex))
+                case .move(let indexPath, let newIndexPath):
+                    self.collectionView.deleteItems(at: [indexPath])
+                    self.collectionView.insertItems(at: [newIndexPath])
+                case .delete(let indexPath):
+                    self.collectionView.deleteItems(at: [indexPath])
+                case .insertSection(let sectionIndex):
+                    self.collectionView.insertSections(IndexSet(integer: sectionIndex))
+                case .deleteSection(let sectionIndex):
+                    self.collectionView.deleteSections(IndexSet(integer: sectionIndex))
                 }
             }
             }, completion: nil)
@@ -62,26 +62,26 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
 
     // MARK: Private
 
-    private let collectionView: UICollectionView
-    private let dataProvider: Data
-    private weak var delegate: Delegate!
-    private let additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
+    fileprivate let collectionView: UICollectionView
+    fileprivate let dataProvider: Data
+    fileprivate weak var delegate: Delegate!
+    fileprivate let additionalConfigureCellWithObject: ((Data.Object, Cell) -> ())?
 
 
     // MARK: UICollectionViewDataSource
     
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return dataProvider.numberOfSections()
     }
 
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataProvider.numberOfItemsInSection(section)
     }
 
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let object = dataProvider.objectAtIndexPath(indexPath)
         let identifier = delegate.cellIdentifierForObject(object)
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? Cell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? Cell else {
             fatalError("Unexpected cell type at \(indexPath)")
         }
         additionalConfigureCellWithObject?(object, cell)
@@ -90,15 +90,15 @@ public class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate
         return cell
     }
     
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch(kind) {
         case UICollectionElementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: delegate.headerIdentifierForIndexPath(indexPath), forIndexPath: indexPath) as! Delegate.Header
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: delegate.headerIdentifierForIndexPath(indexPath), for: indexPath) as! Delegate.Header
             delegate.configureHeader(headerView, indexPath: indexPath)
             return headerView
             
         case UICollectionElementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: delegate.footerIdentifierForIndexPath(indexPath), forIndexPath: indexPath) as! Delegate.Footer
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: delegate.footerIdentifierForIndexPath(indexPath), for: indexPath) as! Delegate.Footer
             delegate.configureFooter(footerView, indexPath: indexPath)
             return footerView
         default:

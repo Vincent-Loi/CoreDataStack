@@ -14,11 +14,11 @@ import CoreData
 extension CoreDataStackTests: DataProviderDelegate, CollectionViewDataSourceDelegate {
     typealias Object = CDTrain
     
-    func dataProviderDidUpdate(updates: [DataProviderUpdate<Object>]?) {
+    func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?) {
        dataSource.processUpdates(updates)
     }
     
-    func cellIdentifierForObject(object: Object) -> String {
+    func cellIdentifierForObject(_ object: Object) -> String {
         return "yachtCell"
     }
     
@@ -26,30 +26,30 @@ extension CoreDataStackTests: DataProviderDelegate, CollectionViewDataSourceDele
     typealias Header = UICollectionReusableView
     typealias Footer = UICollectionReusableView
     
-    func headerIdentifierForIndexPath(indexPath: NSIndexPath) -> String { return "" }
+    func headerIdentifierForIndexPath(_ indexPath: IndexPath) -> String { return "" }
     
-    func configureHeader(header: Header, indexPath: NSIndexPath) { }
+    func configureHeader(_ header: Header, indexPath: IndexPath) { }
     
-    func footerIdentifierForIndexPath(indexPath: NSIndexPath) -> String { return "" }
+    func footerIdentifierForIndexPath(_ indexPath: IndexPath) -> String { return "" }
     
-    func configureFooter(header: Footer, indexPath: NSIndexPath) { }
+    func configureFooter(_ header: Footer, indexPath: IndexPath) { }
 }
 
 class TrainItemCell: UICollectionViewCell, ConfigurableCell {
     typealias DataSource = CDTrain
-    func configureForObject(object: DataSource) {
+    func configureForObject(_ object: DataSource) {
         
     }
 }
 
 class CoreDataStackTests: XCTestCase {
     func managedObjectContextForTesting() -> NSManagedObjectContext {
-        let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         
-        let model = NSManagedObjectModel.mergedModelFromBundles(NSBundle.allBundles())
+        let model = NSManagedObjectModel.mergedModel(from: Bundle.allBundles)
         context.persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model!)
         do {
-            try context.persistentStoreCoordinator?.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
+            try context.persistentStoreCoordinator?.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
         }
         catch  {
             
@@ -65,7 +65,7 @@ class CoreDataStackTests: XCTestCase {
         }
         return CoreDataStackTests.managedObjectContextInstance
     }
-    private static var managedObjectContextInstance: NSManagedObjectContext!
+    fileprivate static var managedObjectContextInstance: NSManagedObjectContext!
     
     var collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -77,7 +77,7 @@ class CoreDataStackTests: XCTestCase {
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest(), managedObjectContext: managedObjectContext)
         dataProvider = FetchedResultsDataProvider(fetchedResultsController: frc, delegate: self)
         dataSource = CollectionViewDataSource(collectionView: collectionView, dataProvider: dataProvider, delegate: self)
-        self.collectionView.registerNib(UINib(nibName: "TrainItemCell", bundle: NSBundle(forClass: CoreDataStackTests.self)), forCellWithReuseIdentifier: "yachtCell")
+        self.collectionView.register(UINib(nibName: "TrainItemCell", bundle: Bundle(for: CoreDataStackTests.self)), forCellWithReuseIdentifier: "yachtCell")
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -88,19 +88,19 @@ class CoreDataStackTests: XCTestCase {
     
     func testExample() {
         
-        func initt(train: CDTrain) {
+        func initt(_ train: CDTrain) {
             train.name = "ICE"
             train.id = "id1"
         } 
-        func update(train: CDTrain) {
+        func update(_ train: CDTrain) {
             train.name = "ICE T"
             train.id = "id1"
         }
-        func update2(train: CDTrain) {
+        func update2(_ train: CDTrain) {
             train.name = "ICE 4"
             train.id = "id2"
         }
-        XCTAssertEqual(collectionView.numberOfItemsInSection(0), 0)
+        XCTAssertEqual(collectionView.numberOfItems(inSection: 0), 0)
         managedObjectContext.findAndInitialize("id1", setup: initt)
 //        try! managedObjectContext.save()
 //        XCTAssertEqual(collectionView.numberOfItemsInSection(0), 1)
@@ -109,17 +109,17 @@ class CoreDataStackTests: XCTestCase {
          managedObjectContext.findAndInitialize("id1", setup: update)
         
         try! managedObjectContext.save()
-        XCTAssertEqual(collectionView.numberOfItemsInSection(0), 1)
+        XCTAssertEqual(collectionView.numberOfItems(inSection: 0), 1)
         managedObjectContext.findAndInitialize("id2", setup: update2)
         
         try! managedObjectContext.save()
-        XCTAssertEqual(collectionView.numberOfItemsInSection(0), 2)
+        XCTAssertEqual(collectionView.numberOfItems(inSection: 0), 2)
         
         //waitForExpectationsWithTimeout(30, handler: nil)
     }
     
     
-    func fetchRequest() -> NSFetchRequest {
+    func fetchRequest() -> NSFetchRequest<AnyObject> {
         let request = NSFetchRequest(entityName: CDTrain.entityName)
         request.sortDescriptors = []
         

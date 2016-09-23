@@ -12,42 +12,42 @@ import CoreData
 
 public final class ManagedObjectObserver {
     public enum ChangeType {
-        case Delete
-        case Update
+        case delete
+        case update
     }
 
-    public init?(object: NSManagedObject, changeHandler: ChangeType -> ()) {
+    public init?(object: NSManagedObject, changeHandler: @escaping (ChangeType) -> ()) {
         guard let moc = object.managedObjectContext else { return nil }
-        objectHasBeenDeleted = !object.dynamicType.defaultPredicate.evaluateWithObject(object)
+        objectHasBeenDeleted = !type(of: object).defaultPredicate.evaluate(with: object)
         token = moc.addObjectsDidChangeNotificationObserver { [unowned self] note in
             guard let changeType = self.changeTypeOfObject(object, inNotification: note) else { return }
-            self.objectHasBeenDeleted = changeType == .Delete
+            self.objectHasBeenDeleted = changeType == .delete
             changeHandler(changeType)
         }
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(token)
+        NotificationCenter.default.removeObserver(token)
     }
 
 
     // MARK: Private
 
-    private var token: NSObjectProtocol!
-    private var objectHasBeenDeleted: Bool = false
+    fileprivate var token: NSObjectProtocol!
+    fileprivate var objectHasBeenDeleted: Bool = false
 
-    private func changeTypeOfObject(object: ManagedObjectType, inNotification note: ObjectsDidChangeNotification) -> ChangeType? {
+    fileprivate func changeTypeOfObject(_ object: ManagedObjectType, inNotification note: ObjectsDidChangeNotification) -> ChangeType? {
         let deleted = note.deletedObjects.union(note.invalidatedObjects)
         if note.invalidatedAllObjects || deleted.containsObjectIdenticalTo(object) {
-            return .Delete
+            return .delete
         }
         let updated = note.updatedObjects.union(note.refreshedObjects)
         if updated.containsObjectIdenticalTo(object) {
-            let predicate = object.dynamicType.defaultPredicate
-            if predicate.evaluateWithObject(object) {
-                return .Update
+            let predicate = type(of: object).defaultPredicate
+            if predicate.evaluate(with: object) {
+                return .update
             } else if !objectHasBeenDeleted {
-                return .Delete
+                return .delete
             }
         }
         return nil

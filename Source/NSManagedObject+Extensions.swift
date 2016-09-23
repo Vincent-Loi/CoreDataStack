@@ -11,13 +11,13 @@ import CoreData
 
 extension NSManagedObject {
 
-    public func refresh(mergeChanges: Bool = true) {
-        managedObjectContext?.refreshObject(self, mergeChanges: mergeChanges)
+    public func refresh(_ mergeChanges: Bool = true) {
+        managedObjectContext?.refresh(self, mergeChanges: mergeChanges)
     }
     
     public static var entityName: String {
         let fullClassName = NSStringFromClass(object_getClass(self))
-        let nameComponents = fullClassName.componentsSeparatedByString(".")
+        let nameComponents = fullClassName.components(separatedBy: ".")
         return nameComponents.last!
     }
 }

@@ -34,31 +34,31 @@ extension NSManagedObject: ManagedObjectType {
     }
 
 
-    public static var sortedFetchRequest: NSFetchRequest {
-        let request = NSFetchRequest(entityName: entityName)
+    public static var sortedFetchRequest: NSFetchRequest<NSManagedObject> {
+        let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
         request.sortDescriptors = defaultSortDescriptors
         request.predicate = defaultPredicate
         return request
     }
 
-    public static func sortedFetchRequestWithPredicate(predicate: NSPredicate) -> NSFetchRequest {
+    public static func sortedFetchRequestWithPredicate(_ predicate: NSPredicate) -> NSFetchRequest<NSManagedObject> {
         let request = sortedFetchRequest
         guard let existingPredicate = request.predicate else { fatalError("must have predicate") }
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [existingPredicate, predicate])
         return request
     }
 
-    public static func sortedFetchRequestWithPredicateFormat(format: String, args: CVarArgType...) -> NSFetchRequest {
+    public static func sortedFetchRequestWithPredicateFormat(_ format: String, args: CVarArg...) -> NSFetchRequest<NSManagedObject> {
         let predicate = withVaList(args) { NSPredicate(format: format, arguments: $0) }
         return sortedFetchRequestWithPredicate(predicate)
     }
 
-    public static func predicateWithFormat(format: String, args: CVarArgType...) -> NSPredicate {
+    public static func predicateWithFormat(_ format: String, args: CVarArg...) -> NSPredicate {
         let predicate = withVaList(args) { NSPredicate(format: format, arguments: $0) }
         return predicateWithPredicate(predicate)
     }
 
-    public static func predicateWithPredicate(predicate: NSPredicate) -> NSPredicate {
+    public static func predicateWithPredicate(_ predicate: NSPredicate) -> NSPredicate {
         return NSCompoundPredicate(andPredicateWithSubpredicates: [defaultPredicate, predicate])
     }
 
@@ -67,7 +67,7 @@ extension NSManagedObject: ManagedObjectType {
 
 extension ManagedObjectType where Self: NSManagedObject {
 
-    public static func findOrCreateInContext(moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate, configure: Self -> ()) -> Self {
+    public static func findOrCreateInContext(_ moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate, configure: (Self) -> ()) -> Self {
         guard let obj = findOrFetchInContext(moc, matchingPredicate: predicate) else {
             let newObject: Self = moc.insertObject()
             configure(newObject)
@@ -77,7 +77,7 @@ extension ManagedObjectType where Self: NSManagedObject {
     }
 
 
-    public static func findOrFetchInContext(moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate) -> Self? {
+    public static func findOrFetchInContext(_ moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate) -> Self? {
         guard let obj = materializedObjectInContext(moc, matchingPredicate: predicate) else {
             return fetchInContext(moc) { request in
                 request.predicate = predicate
@@ -88,25 +88,23 @@ extension ManagedObjectType where Self: NSManagedObject {
         return obj
     }
 
-    public static func fetchInContext(context: NSManagedObjectContext, @noescape configurationBlock: NSFetchRequest -> () = { _ in }) -> [Self] {
-        let request = NSFetchRequest(entityName: Self.entityName)
+    public static func fetchInContext(_ context: NSManagedObjectContext, configurationBlock: (NSFetchRequest<Self>) -> () = { _ in }) -> [Self] {
+        let request = NSFetchRequest<Self>(entityName: Self.entityName)
         configurationBlock(request)
-        guard let result = try! context.executeFetchRequest(request) as? [Self] else { fatalError("Fetched objects have wrong type") }
+        guard let result = try? context.fetch(request) else { fatalError("Fetched objects have wrong type") }
         return result
     }
 
-    public static func countInContext(context: NSManagedObjectContext, @noescape configurationBlock: NSFetchRequest -> () = { _ in }) -> Int {
-        let request = NSFetchRequest(entityName: entityName)
+    public static func countInContext<Self>(_ context: NSManagedObjectContext, configurationBlock: (NSFetchRequest<Self>) -> () = { _ in }) -> Int {
+        let request = NSFetchRequest<Self>(entityName: entityName)
         configurationBlock(request)
-        var error: NSError?
-        let result = context.countForFetchRequest(request, error: &error)
-        guard result != NSNotFound else { fatalError("Failed to execute fetch request: \(error)") }
+        guard let result = try? context.count(for: request) else { fatalError("Failed to execute fetch request: ") }
         return result
     }
 
-    public static func materializedObjectInContext(moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate) -> Self? {
-        for obj in moc.registeredObjects where !obj.fault {
-            guard let res = obj as? Self where predicate.evaluateWithObject(res) else { continue }
+    public static func materializedObjectInContext(_ moc: NSManagedObjectContext, matchingPredicate predicate: NSPredicate) -> Self? {
+        for obj in moc.registeredObjects where !obj.isFault {
+            guard let res = obj as? Self , predicate.evaluate(with: res) else { continue }
             return res
         }
         return nil
@@ -116,7 +114,7 @@ extension ManagedObjectType where Self: NSManagedObject {
 
 
 extension ManagedObjectType where Self: NSManagedObject {
-    public static func fetchSingleObjectInContext(moc: NSManagedObjectContext, cacheKey: String, configure: NSFetchRequest -> ()) -> Self? {
+    public static func fetchSingleObjectInContext(_ moc: NSManagedObjectContext, cacheKey: String, configure: (NSFetchRequest<Self>) -> ()) -> Self? {
         guard let cached = moc.objectForSingleObjectCacheKey(cacheKey) as? Self else {
             let result = fetchSingleObjectInContext(moc, configure: configure)
             moc.setObject(result, forSingleObjectCacheKey: cacheKey)
@@ -125,7 +123,7 @@ extension ManagedObjectType where Self: NSManagedObject {
         return cached
     }
 
-    private static func fetchSingleObjectInContext(moc: NSManagedObjectContext, configure: NSFetchRequest -> ()) -> Self? {
+    fileprivate static func fetchSingleObjectInContext(_ moc: NSManagedObjectContext, configure: (NSFetchRequest<Self>) -> ()) -> Self? {
         let result = fetchInContext(moc) { request in
             configure(request)
             request.fetchLimit = 2

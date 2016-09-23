@@ -10,27 +10,27 @@ import Foundation
 
 public protocol DataProvider: class {
     associatedtype Object
-    func objectAtIndexPath(indexPath: NSIndexPath) -> Object
-    func numberOfItemsInSection(section: Int) -> Int
+    func objectAtIndexPath(_ indexPath: IndexPath) -> Object
+    func numberOfItemsInSection(_ section: Int) -> Int
     func numberOfSections() -> Int
     
-    func indexPathForObject(object: Object) -> NSIndexPath?
+    func indexPathForObject(_ object: Object) -> IndexPath?
 }
 
 
 public  protocol DataProviderDelegate: class {
     associatedtype Object
-    func dataProviderDidUpdate(updates: [DataProviderUpdate<Object>]?)
+    func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?)
 }
 
 
 public  enum DataProviderUpdate<Object> {
-    case Insert(NSIndexPath)
-    case Update(NSIndexPath, Object)
-    case Move(NSIndexPath, NSIndexPath)
-    case Delete(NSIndexPath)
+    case insert(IndexPath)
+    case update(IndexPath, Object)
+    case move(IndexPath, IndexPath)
+    case delete(IndexPath)
     
-    case InsertSection(Int)
-    case DeleteSection(Int)
+    case insertSection(Int)
+    case deleteSection(Int)
 }
 

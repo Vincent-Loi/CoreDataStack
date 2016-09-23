@@ -10,22 +10,22 @@
 public protocol DataSourceCellConfiguratorDelegate {
     associatedtype Object
     associatedtype Cell
-    func configureCellWithObject(object: Object, cell: Cell) -> Cell
+    func configureCellWithObject(_ object: Object, cell: Cell) -> Cell
 }
 
 public protocol DataSourceDelegate: class {
     associatedtype Object
-    func cellIdentifierForObject(object: Object) -> String
+    func cellIdentifierForObject(_ object: Object) -> String
 }
 
 public protocol CollectionViewDataSourceDelegate: DataSourceDelegate {
     associatedtype Header: UICollectionReusableView
     associatedtype Footer: UICollectionReusableView
     
-    func headerIdentifierForIndexPath(indexPath: NSIndexPath) -> String
-    func configureHeader(header: Header, indexPath: NSIndexPath)
+    func headerIdentifierForIndexPath(_ indexPath: IndexPath) -> String
+    func configureHeader(_ header: Header, indexPath: IndexPath)
     
-    func footerIdentifierForIndexPath(indexPath: NSIndexPath) -> String
-    func configureFooter(header: Footer, indexPath: NSIndexPath)
+    func footerIdentifierForIndexPath(_ indexPath: IndexPath) -> String
+    func configureFooter(_ header: Footer, indexPath: IndexPath)
 }
 
