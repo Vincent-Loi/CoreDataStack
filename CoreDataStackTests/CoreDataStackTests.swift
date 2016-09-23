@@ -119,8 +119,8 @@ class CoreDataStackTests: XCTestCase {
     }
     
     
-    func fetchRequest() -> NSFetchRequest<AnyObject> {
-        let request = NSFetchRequest(entityName: CDTrain.entityName)
+    func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CDTrain.entityName)
         request.sortDescriptors = []
         
         return request
