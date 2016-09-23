@@ -17,13 +17,13 @@ class ValueTransformer<A: AnyObject, B: AnyObject>: Foundation.ValueTransformer 
     fileprivate let transform: Transform
     fileprivate let reverseTransform: ReverseTransform
 
-    init(transform: Transform, reverseTransform: ReverseTransform) {
+    init(transform: @escaping Transform, reverseTransform: @escaping ReverseTransform) {
         self.transform = transform
         self.reverseTransform = reverseTransform
         super.init()
     }
 
-    static func registerTransformerWithName(_ name: String, transform: Transform, reverseTransform: ReverseTransform) {
+    static func registerTransformerWithName(_ name: String, transform: @escaping Transform, reverseTransform: @escaping ReverseTransform) {
         let vt = ValueTransformer(transform: transform, reverseTransform: reverseTransform)
         Foundation.ValueTransformer.setValueTransformer(vt, forName: NSValueTransformerName(rawValue: name))
     }
