@@ -8,12 +8,11 @@
 
 import CoreData
 
-
-open class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFetchedResultsControllerDelegate, DataProvider where  Delegate.Object == NSManagedObject{
+open class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFetchedResultsControllerDelegate, DataProvider {
 
     public typealias Object = Delegate.Object
 
-    public init(fetchedResultsController: NSFetchedResultsController<Delegate.Object>, delegate: Delegate) {
+    public init(fetchedResultsController: NSFetchedResultsController<Object>, delegate: Delegate) {
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
         super.init()
@@ -22,7 +21,7 @@ open class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject,
     }
 
     open func reconfigureFetchRequest(_ block: (NSFetchRequest<Object>) -> ()) {
-        NSFetchedResultsController<Delegate.Object>.deleteCache(withName: fetchedResultsController.cacheName)
+        NSFetchedResultsController<Object>.deleteCache(withName: fetchedResultsController.cacheName)
         block(fetchedResultsController.fetchRequest)
         do { try fetchedResultsController.performFetch() } catch { fatalError("fetch request failed") }
         delegate.dataProviderDidUpdate(nil)

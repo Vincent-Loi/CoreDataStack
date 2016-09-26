@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 public protocol DataProvider: class {
     associatedtype Object
@@ -18,8 +19,8 @@ public protocol DataProvider: class {
 }
 
 
-public  protocol DataProviderDelegate: class {
-    associatedtype Object
+public protocol DataProviderDelegate: class {
+    associatedtype Object: NSFetchRequestResult //or NSManagedObject
     func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?)
 }
 

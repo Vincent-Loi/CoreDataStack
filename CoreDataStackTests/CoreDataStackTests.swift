@@ -11,9 +11,12 @@ import UIKit
 import CoreData
 @testable import CoreDataStack
 
+struct Train {
+    
+}
+
 extension CoreDataStackTests: DataProviderDelegate, CollectionViewDataSourceDelegate {
     typealias Object = CDTrain
-    
     func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?) {
        dataSource.processUpdates(updates)
     }
@@ -74,7 +77,7 @@ class CoreDataStackTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest(), managedObjectContext: managedObjectContext)
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         dataProvider = FetchedResultsDataProvider(fetchedResultsController: frc, delegate: self)
         dataSource = CollectionViewDataSource(collectionView: collectionView, dataProvider: dataProvider, delegate: self)
         self.collectionView.register(UINib(nibName: "TrainItemCell", bundle: Bundle(for: CoreDataStackTests.self)), forCellWithReuseIdentifier: "yachtCell")
@@ -119,8 +122,8 @@ class CoreDataStackTests: XCTestCase {
     }
     
     
-    func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CDTrain.entityName)
+    func fetchRequest() -> NSFetchRequest<Object> {
+        let request = NSFetchRequest<Object>(entityName: CDTrain.entityName)
         request.sortDescriptors = []
         
         return request

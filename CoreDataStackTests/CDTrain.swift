@@ -9,6 +9,5 @@
 import Foundation
 import CoreData
 
-
 class CDTrain: NSManagedObject {
 }

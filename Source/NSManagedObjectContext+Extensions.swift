@@ -66,14 +66,14 @@ extension NSManagedObjectContext {
 
     public func performSaveOrRollback() {
         perform {
-            self.saveOrRollback()
+            let _ = self.saveOrRollback()
         }
     }
 
     public func performChanges(_ block: @escaping () -> ()) {
         perform {
             block()
-            self.saveOrRollback()
+            let _ = self.saveOrRollback()
         }
     }
 
