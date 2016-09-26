@@ -20,7 +20,7 @@ public protocol DataProvider: class {
 
 
 public protocol DataProviderDelegate: class {
-    associatedtype Object: NSFetchRequestResult //or NSManagedObject
+    associatedtype Object: NSManagedObject 
     func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?)
 }
 
