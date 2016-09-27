@@ -20,7 +20,7 @@ public protocol DataProvider: class {
 
 
 public protocol DataProviderDelegate: class {
-    associatedtype Object: NSManagedObject 
+    associatedtype Object
     func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?)
 }
 

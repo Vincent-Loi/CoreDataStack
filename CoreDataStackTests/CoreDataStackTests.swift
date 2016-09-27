@@ -16,7 +16,7 @@ struct Train {
 }
 
 extension CoreDataStackTests: DataProviderDelegate, CollectionViewDataSourceDelegate {
-    typealias Object = CDTrain
+    typealias Object = NSManagedObject
     func dataProviderDidUpdate(_ updates: [DataProviderUpdate<Object>]?) {
        dataSource.processUpdates(updates)
     }
@@ -39,7 +39,7 @@ extension CoreDataStackTests: DataProviderDelegate, CollectionViewDataSourceDele
 }
 
 class TrainItemCell: UICollectionViewCell, ConfigurableCell {
-    typealias DataSource = CDTrain
+    typealias DataSource = NSManagedObject
     func configureForObject(_ object: DataSource) {
         
     }

@@ -12,9 +12,9 @@ import CoreData
 open class CoreDataStack: NSObject {
     let modelName: String
     let bundle: Bundle
-    let options: Dictionary<NSObject, AnyObject>?
+    let options: Dictionary<String, Any>?
     
-    public init(modelName: String, bundle: Bundle, options: Dictionary<NSObject, AnyObject>? = nil) {
+    public init(modelName: String, bundle: Bundle, options: Dictionary<String, Any>? = nil) {
         self.bundle = bundle
         self.modelName = modelName
         self.options = options

@@ -8,7 +8,7 @@
 
 import CoreData
 
-open class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFetchedResultsControllerDelegate, DataProvider {
+open class FetchedResultsDataProvider<Delegate: DataProviderDelegate>: NSObject, NSFetchedResultsControllerDelegate, DataProvider where Delegate.Object == NSManagedObject {
 
     public typealias Object = Delegate.Object
 
