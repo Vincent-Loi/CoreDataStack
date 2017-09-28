@@ -47,19 +47,19 @@ extension ManagedObjectValidationError: CustomDebugStringConvertible {
 
 extension NSManagedObject {
     func propertyValidationErrorForKey(_ key: String, localizedDescription: String) -> NSError {
-        let userInfo: [NSObject:AnyObject] = [
-            NSValidationObjectErrorKey as NSObject: self,
-            NSValidationKeyErrorKey as NSObject: key as AnyObject,
-            NSLocalizedDescriptionKey as NSObject: localizedDescription as AnyObject
+        let userInfo: [String:AnyObject] = [
+            NSValidationObjectErrorKey: self,
+            NSValidationKeyErrorKey: key as AnyObject,
+            NSLocalizedDescriptionKey: localizedDescription as AnyObject
         ]
         let domain = Bundle(for: type(of: self)).bundleIdentifier ?? "undefined"
         return NSError(domain: domain, code: NSManagedObjectValidationError, userInfo: userInfo)
     }
 
     func validationErrorWithDescription(_ localizedDescription: String) -> NSError {
-        let userInfo: [NSObject:AnyObject] = [
-            NSValidationObjectErrorKey as NSObject: self,
-            NSLocalizedDescriptionKey as NSObject: localizedDescription as AnyObject
+        let userInfo: [String:AnyObject] = [
+            NSValidationObjectErrorKey: self,
+            NSLocalizedDescriptionKey: localizedDescription as AnyObject
         ]
         let domain = Bundle(for: type(of: self)).bundleIdentifier ?? "undefined"
         return NSError(domain: domain, code: NSManagedObjectValidationError, userInfo: userInfo)

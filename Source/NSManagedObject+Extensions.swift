@@ -15,9 +15,10 @@ extension NSManagedObject {
         managedObjectContext?.refresh(self, mergeChanges: mergeChanges)
     }
     
-    public static var entityName: String {
-        let fullClassName = NSStringFromClass(object_getClass(self))
-        let nameComponents = fullClassName.components(separatedBy: ".")
-        return nameComponents.last!
+    public static var entityName : String {
+        if let components = NSStringFromClass(self).components(separatedBy: ".").last {
+            return components
+        }
+        return ""
     }
 }
