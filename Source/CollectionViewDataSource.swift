@@ -92,12 +92,12 @@ open class CollectionViewDataSource<Delegate: CollectionViewDataSourceDelegate, 
     
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch(kind) {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: delegate.headerIdentifierForIndexPath(indexPath), for: indexPath) as! Delegate.Header
             delegate.configureHeader(headerView, indexPath: indexPath)
             return headerView
             
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: delegate.footerIdentifierForIndexPath(indexPath), for: indexPath) as! Delegate.Footer
             delegate.configureFooter(footerView, indexPath: indexPath)
             return footerView
